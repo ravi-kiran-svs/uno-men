@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/CardsServices/DeckService.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/CardsServices/CentreCardsService.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/CardsServices/PlayerCardsService.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/CardsServices/BotCardsService.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/GameService/GameService.gd" type="Script" id=5]
+
+[node name="TestGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GameService" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="DeckCardsService" type="Control" parent="GameService"]
+unique_name_in_owner = true
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -100.0
+margin_right = 200.0
+margin_bottom = 100.0
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="GameService/DeckCardsService"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Deck cards ..."
+
+[node name="CentreCardsService" type="Control" parent="GameService"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="GameService/CentreCardsService"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+align = 1
+valign = 1
+
+[node name="PlayerCardsService" type="Control" parent="GameService"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -200.0
+margin_right = 100.0
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="GameService/PlayerCardsService"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BotCardsService" type="Control" parent="GameService"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.0
+margin_right = 100.0
+margin_bottom = 200.0
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="GameService/BotCardsService"]
+anchor_right = 1.0
+anchor_bottom = 1.0

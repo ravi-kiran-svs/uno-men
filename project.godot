@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "CardsService",
+"language": "GDScript",
+"path": "res://Scripts/Card/CardsService.gd"
+} ]
+_global_script_class_icons={
+"CardsService": ""
+}
+
 [application]
 
 config/name="UNO MEN"
-run/main_scene="res://TestScene.tscn"
+run/main_scene="res://Scenes/TestScenes/TestScene.tscn"
 config/icon="res://icon.png"
 
 [gui]
