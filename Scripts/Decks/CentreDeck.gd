@@ -1,4 +1,4 @@
-extends CardsService
+extends Deck
 
 onready var _text = get_node("Label")
 

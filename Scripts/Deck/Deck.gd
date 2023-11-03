@@ -1,5 +1,5 @@
 extends Node
-class_name CardsService
+class_name Deck
 
 var _cards_list = []
 
