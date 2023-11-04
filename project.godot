@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Deck",
 "language": "GDScript",
 "path": "res://Scripts/Deck/Deck.gd"
+}, {
+"base": "Deck",
+"class": "PlayableDeck",
+"language": "GDScript",
+"path": "res://Scripts/Decks/PlayableDeck.gd"
 } ]
 _global_script_class_icons={
-"Deck": ""
+"Deck": "",
+"PlayableDeck": ""
 }
 
 [application]

@@ -1,4 +1,4 @@
-extends Deck
+extends PlayableDeck
 
 onready var _text = get_node("Label")
 
@@ -9,7 +9,7 @@ func _updateText():
 	var text_string = ""
 	
 	for i in _cards_list.size():
-		text_string += String(_cards_list[i]) + "  - "
+		text_string += String(_cards_list[i]) + " - "
 	
 	_text.text = text_string
 
@@ -19,17 +19,3 @@ func _on_SendCard_pressed():
 
 func _on_RequestCard_pressed():
 	_requestCardFromDeck()
-
-func _addCardToCentre(i : int):
-	var sendSuccess = get_node("%DeckService").sendCardTo(
-		get_node("%DeckService").CentreDeck, i)
-	
-	if(sendSuccess):
-		removeCard(i)
-
-func _requestCardFromDeck():
-	var card = get_node("%DeckService").requestCardFrom(
-		get_node("%DeckService").CardsDeck)
-	
-	if(card != null):
-		addCard(card)

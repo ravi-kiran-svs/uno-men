@@ -24,9 +24,10 @@ func _updateText():
 	_text.text = text_string
 
 func _addTopCardTo(to : Deck):
-	var card = _cards_list.front()
-	
-	var sendSuccess = get_node("%DeckService").sendCardTo(to, card)
-	
-	if(sendSuccess):
-		removeCard(card)
+	if(!isEmpty()):
+		var card = _cards_list.front()
+		
+		var sendSuccess = get_node("%DeckService").sendCardTo(to, card)
+		
+		if(sendSuccess):
+			removeCard(card)
