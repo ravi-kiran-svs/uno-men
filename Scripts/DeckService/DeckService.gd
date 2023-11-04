@@ -15,6 +15,9 @@ func sendCardTo(to : Deck, i : int):
 	to.addCard(i)
 	return true
 
+func requestCardFrom(from : Deck) -> int:
+	return from.getTopCard()
+
 # things to do at the start of the game - when player clicks Start Game button.
 # 1. create the cards and add them into the deck.
 # 2. shuffle the deck and split it to the players (from the top of the deck).
