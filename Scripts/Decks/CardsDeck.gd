@@ -12,6 +12,15 @@ func shuffleAndSplit(deck, n):
 	
 	_addTopCardTo(get_node("%DeckService").CentreDeck)
 
+func removeCard(i : int):
+	.removeCard(i)
+	
+	if(_cards_list.size() <= 1):
+		var cards = get_node("%DeckService").requestRefill()
+		cards.shuffle()
+		_cards_list.append_array(cards)
+		updateView()
+
 func updateView():
 	_updateText()
 	

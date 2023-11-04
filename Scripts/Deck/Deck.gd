@@ -16,8 +16,8 @@ func getTopCard():
 		return null
 	
 	else:
-		var card = _cards_list.pop_front()
-		updateView()
+		var card = _cards_list.front()
+		removeCard(card)
 		return card
 
 func peekBackCard() -> int:
