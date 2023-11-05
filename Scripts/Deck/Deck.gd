@@ -1,16 +1,17 @@
+# A custom class that represents a deck of cards.
 extends Node
 class_name Deck
 
-var DeckService
+var DeckService : Node
 
 var _cards_list = []
 
-func addCard(i : int):
-	_cards_list.push_back(i)
+func addCard(card : Card):
+	_cards_list.push_back(card)
 	updateView()
 
-func removeCard(i : int):
-	_cards_list.erase(i)
+func removeCard(card : Card):
+	_cards_list.erase(card)
 	updateView()
 
 func getTopCard():
@@ -22,7 +23,7 @@ func getTopCard():
 		removeCard(card)
 		return card
 
-func peekBackCard() -> int:
+func peekBackCard() -> Card:
 	return _cards_list.back()
 
 func isEmpty() -> bool:

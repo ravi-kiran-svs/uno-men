@@ -1,3 +1,4 @@
+# This class is responsible for the deck of cards in the Player's hand.
 extends PlayableDeck
 
 onready var _text = get_node("Label")
@@ -9,7 +10,8 @@ func _updateText():
 	var text_string = ""
 	
 	for i in _cards_list.size():
-		text_string += String(_cards_list[i]) + " - "
+		text_string += String(_cards_list[i].colour) + " "
+		text_string += String(_cards_list[i].num) + " - "
 	
 	_text.text = text_string
 

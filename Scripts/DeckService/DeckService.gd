@@ -1,34 +1,38 @@
+# This class is responsible for all communication between different decks.
 extends Control
 
+# initial number of cards each played gets.
 var N = 5;
 
-onready var CardsDeck = get_node("CardsDeck")
-onready var CentreDeck = get_node("CentreDeck")
-onready var PlayerDeck = get_node("PlayerDeck")
-onready var BotDeck = get_node("BotDeck")
+# these are the four decks of cards used in the game.
+onready var CardsDeck := get_node("CardsDeck")
+onready var CentreDeck := get_node("CentreDeck")
+onready var PlayerDeck := get_node("PlayerDeck")
+onready var BotDeck := get_node("BotDeck")
 
 func _ready():
 	randomize()
 
-# more complex code consisting of loops and conditions.
-func sendCardTo(to : Deck, i : int):
-	to.addCard(i)
+# used to send card from one deck to another.
+func sendCardTo(to : Deck, card : Card) -> bool:
+	to.addCard(card)
 	return true
 
-func requestCardFrom(from : Deck) -> int:
+# used to request card from a deck.
+func requestCardFrom(from : Deck) -> Card:
 	return from.getTopCard()
 
+# called by CardsDeck when it is out of cards.
 func requestRefill():
 	return CentreDeck.getAllCardsButTop()
 
-# things to do at the start of the game - when player clicks Start Game button.
-# 1. create the cards and add them into the deck.
-# 2. shuffle the deck and split it to the players (from the top of the deck).
-# 3. pick the top card from the deck and add it into the centre cards.
-
+# this function is called when the Game Starts - signal from GameService
+# 1. create the initial deck of cards.
+# 2. send it to CardsDeck to be shuffled and split.
 func _onGameStart():
 	var initialDeck = []
-	for i in range(5, 20):
-		initialDeck.append(i)
+	for c in 4:
+		for n in range(-1, 10):
+			initialDeck.append(Card.new(c, n))
 	
 	CardsDeck.shuffleAndSplit(initialDeck, N)

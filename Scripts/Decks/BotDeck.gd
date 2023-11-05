@@ -9,7 +9,8 @@ func _updateText():
 	var text_string = ""
 	
 	for i in _cards_list.size():
-		text_string += String(_cards_list[i]) + " "
+		text_string += String(_cards_list[i].colour) + " "
+		text_string += String(_cards_list[i].num) + " - "
 	
 	_text.text = text_string
 
