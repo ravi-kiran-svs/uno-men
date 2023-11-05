@@ -20,3 +20,13 @@ func _on_SomethingButton_pressed():
 	
 	else:
 		_requestCardFromDeck()
+	
+	emit_signal("PlayerTurnEnd", 1)
+
+func _on_TurnStart(i):
+	if i == 1:
+		$SomethingButton.disabled = false
+
+func _on_TurnEnd(i):
+	if i == 1:
+		$SomethingButton.disabled = true

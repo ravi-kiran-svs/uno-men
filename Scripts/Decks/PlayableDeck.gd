@@ -1,6 +1,8 @@
 extends Deck
 class_name PlayableDeck
 
+signal PlayerTurnEnd(i)
+
 func _ready():
 	DeckService = get_node("%DeckService")
 

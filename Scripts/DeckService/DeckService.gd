@@ -26,9 +26,7 @@ func requestRefill():
 # 2. shuffle the deck and split it to the players (from the top of the deck).
 # 3. pick the top card from the deck and add it into the centre cards.
 
-func _on_StartGame_pressed():
-	get_node("StartGame").disabled = true;
-	
+func _onGameStart():
 	var initialDeck = []
 	for i in range(5, 20):
 		initialDeck.append(i)
