@@ -1,6 +1,8 @@
 extends Node
 class_name Deck
 
+var DeckService
+
 var _cards_list = []
 
 func addCard(i : int):

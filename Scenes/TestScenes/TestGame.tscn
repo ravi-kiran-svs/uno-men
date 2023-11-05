@@ -82,6 +82,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_right = 75.0
 margin_bottom = 50.0
+disabled = true
 text = "Send"
 
 [node name="RequestCard" type="Button" parent="DeckService/PlayerDeck"]
@@ -90,6 +91,7 @@ anchor_right = 1.0
 margin_top = 50.0
 margin_right = 75.0
 margin_bottom = 100.0
+disabled = true
 text = "Request"
 
 [node name="BotDeck" type="Control" parent="DeckService"]
@@ -111,6 +113,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_right = 75.0
 margin_bottom = 50.0
+disabled = true
 text = "Play Turn"
 
 [connection signal="pressed" from="DeckService/StartGame" to="DeckService" method="_on_StartGame_pressed"]

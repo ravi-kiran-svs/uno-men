@@ -1,16 +1,19 @@
 extends Deck
 class_name PlayableDeck
 
+func _ready():
+	DeckService = get_node("%DeckService")
+
 func _addCardToCentre(i : int):
-	var sendSuccess = get_node("%DeckService").sendCardTo(
-		get_node("%DeckService").CentreDeck, i)
+	var sendSuccess = DeckService.sendCardTo(
+		DeckService.CentreDeck, i)
 	
 	if(sendSuccess):
 		removeCard(i)
 
 func _requestCardFromDeck():
-	var card = get_node("%DeckService").requestCardFrom(
-		get_node("%DeckService").CardsDeck)
+	var card = DeckService.requestCardFrom(
+		DeckService.CardsDeck)
 	
 	if(card != null):
 		addCard(card)

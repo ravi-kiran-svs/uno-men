@@ -2,6 +2,9 @@ extends Deck
 
 onready var _text = get_node("Label")
 
+func _ready():
+	DeckService = get_node("%DeckService")
+
 func updateView():
 	_updateText()
 	
