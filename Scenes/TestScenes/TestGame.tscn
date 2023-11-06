@@ -182,16 +182,6 @@ margin_bottom = 64.0
 text = "player - deck"
 autowrap = true
 
-[node name="SendCard" type="Button" parent="DeckService/PlayerDeck"]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 192.0
-margin_right = 267.0
-margin_bottom = 64.0
-disabled = true
-text = "Send"
-
 [node name="RequestCard" type="Button" parent="DeckService/PlayerDeck"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -420,7 +410,6 @@ text = "Play Turn"
 [connection signal="TurnStart" from="GameService" to="DeckService/BotDeck" method="_on_TurnStart"]
 [connection signal="pressed" from="GameService/StartGame" to="GameService" method="_on_StartGame_pressed"]
 [connection signal="PlayerTurnEnd" from="DeckService/PlayerDeck" to="GameService" method="_on_PlayerTurnEnd"]
-[connection signal="pressed" from="DeckService/PlayerDeck/SendCard" to="DeckService/PlayerDeck" method="_on_SendCard_pressed"]
 [connection signal="pressed" from="DeckService/PlayerDeck/RequestCard" to="DeckService/PlayerDeck" method="_on_RequestCard_pressed"]
 [connection signal="PlayerTurnEnd" from="DeckService/BotDeck" to="GameService" method="_on_PlayerTurnEnd"]
 [connection signal="pressed" from="DeckService/BotDeck/SomethingButton" to="DeckService/BotDeck" method="_on_SomethingButton_pressed"]
