@@ -1,6 +1,6 @@
 extends PlayableDeck
 
-onready var _text = get_node("Label")
+onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
 
 func _ready():

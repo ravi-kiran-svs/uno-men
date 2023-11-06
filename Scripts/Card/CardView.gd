@@ -1,5 +1,6 @@
 # This class is responsible for the interface of the Card
 extends Control
+class_name CardView
 
 func showBack():
 	$BG.frame = 4
