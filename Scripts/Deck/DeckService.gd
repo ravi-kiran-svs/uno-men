@@ -2,7 +2,7 @@
 extends Control
 
 # initial number of cards each played gets.
-var N = 5;
+export var N : int = 5;
 
 # these are the four decks of cards used in the game.
 onready var CardsDeck := get_node("CardsDeck")

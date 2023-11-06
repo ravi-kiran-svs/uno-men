@@ -1,5 +1,7 @@
 extends PlayableDeck
 
+export var tThink : float = 3
+
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
 
@@ -28,7 +30,7 @@ func _updateDebugText():
 	
 	_text.text = text_string
 
-func _on_SomethingButton_pressed():
+func _takeAction():
 	if(rand_range(0, 2) < 1):
 		var card = _cards_list[rand_range(0, _cards_list.size())]
 		
@@ -45,8 +47,9 @@ func _on_SomethingButton_pressed():
 
 func _on_TurnStart(i):
 	if i == 1:
-		$SomethingButton.disabled = false
+		yield(get_tree().create_timer(tThink), "timeout")
+		_takeAction()
 
 func _on_TurnEnd(i):
 	if i == 1:
-		$SomethingButton.disabled = true
+		pass
