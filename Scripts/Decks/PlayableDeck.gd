@@ -10,10 +10,11 @@ func _ready():
 	DeckService = get_node("%DeckService")
 
 # adds a card to the centre deck.
-func _addCardToCentre(card : Card):
+func _addCardToCentre(card : Card) -> bool:
 	var sendSuccess = DeckService.sendCardTo(DeckService.CentreDeck, card)
 	if(sendSuccess):
 		removeCard(card)
+	return sendSuccess
 
 # requests a card from the cards deck.
 func _requestCardFromDeck():

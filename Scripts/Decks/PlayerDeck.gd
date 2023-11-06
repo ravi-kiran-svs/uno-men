@@ -4,7 +4,7 @@ extends PlayableDeck
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
 
-var CardButton = preload("res://Nodes/Card/CardView.tscn")
+var CardButton = preload("res://Nodes/Card/CardButton.tscn")
 
 func _ready():
 	for cardView in _cards.get_children():
@@ -27,19 +27,17 @@ func addCard(card : Card):
 	.addCard(card)
 	
 	var cardButton = CardButton.instance()
-	cardButton.showFront(card)
+	cardButton.setCard(card)
+	cardButton.connect("ButtonPressed", self, "_onButtonPressed")
 	_cards.add_child(cardButton)
+	#move child etc - to rearrange
 
-func removeCard(card : Card):
-	.removeCard(card)
+func _onButtonPressed(button : Node, card : Card):
+	var sendSuccess = _addCardToCentre(card)
+	if(sendSuccess):
+		button.queue_free()
 	
-	# should be changed in future lol - a lot simpler
-	for cardView in _cards.get_children():
-		if cardView.get_node("BG").frame == card.colour:
-			if	cardView.get_node("FG").frame == card.num || (
-				card.num == -1 && cardView.get_node("FG").frame == 10):
-				cardView.queue_free()
-				break
+	emit_signal("PlayerTurnEnd", 0)
 
 func _on_SendCard_pressed():
 	var card = _cards_list[rand_range(0, _cards_list.size())]

@@ -173,6 +173,7 @@ margin_right = 384.0
 margin_bottom = 128.0
 
 [node name="DebugLabel" type="Label" parent="DeckService/PlayerDeck"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -192.0
@@ -182,6 +183,7 @@ text = "player - deck"
 autowrap = true
 
 [node name="SendCard" type="Button" parent="DeckService/PlayerDeck"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 192.0
