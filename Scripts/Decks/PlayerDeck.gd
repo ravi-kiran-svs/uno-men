@@ -28,16 +28,19 @@ func addCard(card : Card):
 	
 	var cardButton = CardButton.instance()
 	cardButton.setCard(card)
-	cardButton.connect("ButtonPressed", self, "_onButtonPressed")
+	cardButton.connect("ButtonPressed", self, "_onCardButtonPressed")
 	_cards.add_child(cardButton)
 	#move child etc - to rearrange
 
-func _onButtonPressed(button : Node, card : Card):
+func _onCardButtonPressed(button : Node, card : Card):
 	var sendSuccess = _addCardToCentre(card)
 	if(sendSuccess):
 		button.queue_free()
-	
-	emit_signal("PlayerTurnEnd", 0)
+		
+		if(_cards_list.size() == 0):
+			emit_signal("PlayerDeckEmpty", 0)
+		else:
+			emit_signal("PlayerTurnEnd", 0)
 
 func _on_RequestCard_pressed():
 	_requestCardFromDeck()

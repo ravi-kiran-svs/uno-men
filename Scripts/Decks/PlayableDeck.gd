@@ -5,6 +5,7 @@ class_name PlayableDeck
 
 # notify that the player has finished their turn.
 signal PlayerTurnEnd(i)
+signal PlayerDeckEmpty(i)
 
 func _ready():
 	DeckService = get_node("%DeckService")

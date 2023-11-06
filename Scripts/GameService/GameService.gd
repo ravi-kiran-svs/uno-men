@@ -13,7 +13,7 @@ func _on_StartGame_pressed():
 	emit_signal("GameStart")
 	_startTurn(0)
 
-func _on_PlayerTurnEnd(i):
+func _on_PlayerTurnEnd(i : int):
 	if i == 0:
 		emit_signal("TurnEnd", 0)
 		_startTurn(1)
@@ -21,3 +21,10 @@ func _on_PlayerTurnEnd(i):
 	else:
 		emit_signal("TurnEnd", 1)
 		_startTurn(0)
+
+func _on_PlayerDeckEmpty(i : int):
+	if i == 0:
+		print("YOU WIN")
+	
+	else:
+		print("YOU LOSE")

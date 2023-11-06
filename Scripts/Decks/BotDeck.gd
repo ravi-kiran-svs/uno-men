@@ -31,12 +31,17 @@ func _updateDebugText():
 func _on_SomethingButton_pressed():
 	if(rand_range(0, 2) < 1):
 		var card = _cards_list[rand_range(0, _cards_list.size())]
-		_addCardToCentre(card)
+		
+		var sendSuccess = _addCardToCentre(card)
+		if(sendSuccess):
+			if(_cards_list.size() == 0):
+				emit_signal("PlayerDeckEmpty", 1)
+			else:
+				emit_signal("PlayerTurnEnd", 1)
 	
 	else:
 		_requestCardFromDeck()
-	
-	emit_signal("PlayerTurnEnd", 1)
+		emit_signal("PlayerTurnEnd", 1)
 
 func _on_TurnStart(i):
 	if i == 1:
