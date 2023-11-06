@@ -4,7 +4,7 @@ extends PlayableDeck
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
 
-var CardButton = preload("res://Nodes/CardView.tscn")
+var CardButton = preload("res://Nodes/Card/CardView.tscn")
 
 func _ready():
 	for cardView in _cards.get_children():
