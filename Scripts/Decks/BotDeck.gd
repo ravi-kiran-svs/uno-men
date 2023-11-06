@@ -1,11 +1,25 @@
 extends PlayableDeck
 
 onready var _text = get_node("Label")
+onready var _cards = get_node("CenterContainer/Cards")
+
+func _ready():
+	for i in range(1, 10):
+		_cards.get_node("Card" + str(i)).visible = false
 
 func updateView():
-	_updateText()
+	_updateCardsView()
+	_updateDebugText()
+
+# updates the CardViews in the centre deck
+func _updateCardsView():
+	var n = _cards_list.size()
 	
-func _updateText():
+	for i in range(1, 10):
+		_cards.get_node("Card" + str(i)).visible = n>=i
+
+# used for debugging purposes.
+func _updateDebugText():
 	var text_string = ""
 	
 	for i in _cards_list.size():

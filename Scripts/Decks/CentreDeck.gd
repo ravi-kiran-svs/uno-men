@@ -7,6 +7,7 @@ onready var _deckCards = get_node("DeckCards")
 
 func _ready():
 	DeckService = get_node("%DeckService")
+	self.visible = false
 
 func updateView():
 	_updateCardsView()
