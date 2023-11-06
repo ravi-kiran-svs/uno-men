@@ -1,15 +1,28 @@
 # This class is responsible for the deck of cards in the centre.
 extends Deck
 
-onready var _text = get_node("Label")
+onready var _text = get_node("DebugLabel")
+onready var _topCard = get_node("TopCard")
+onready var _deckCards = get_node("DeckCards")
 
 func _ready():
 	DeckService = get_node("%DeckService")
 
 func updateView():
-	_updateText()
+	_updateCardsView()
+	_updateDebugText()
+
+# updates the CardViews in the centre deck
+func _updateCardsView():
+	_topCard.showFront(_cards_list.back())
 	
-func _updateText():
+	var n = _cards_list.size()
+	_deckCards.get_node("DeckCard1").visible = n>=2
+	_deckCards.get_node("DeckCard2").visible = n>=3
+	_deckCards.get_node("DeckCard3").visible = n>=4
+
+# used for debugging purposes.
+func _updateDebugText():
 	_text.text = String(_cards_list.back().colour) + " "
 	_text.text += String(_cards_list.back().num) + "\n"
 	
@@ -28,4 +41,6 @@ func getAllCardsButTop():
 		removeCard(card)
 	
 	return cards
-	
+
+func _onGameStart():
+	self.visible = true
