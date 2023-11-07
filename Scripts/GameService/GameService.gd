@@ -1,8 +1,11 @@
 extends Control
+class_name GameService
 
 signal GameStart
 signal TurnStart(i)
 signal TurnEnd(i)
+
+enum Action {PLAY_CARD = 0, RECEIVE_CARD = 1}
 
 onready var DeckService = get_node("%DeckService")
 
@@ -15,10 +18,10 @@ func _on_StartGame_pressed():
 	emit_signal("GameStart")
 	_startTurn(0)
 
-func _on_PlayerTurnEnd(i : int):
+func _on_PlayerTurnEnd(i : int, action : int, card : Card):
 	emit_signal("TurnEnd", i)
 	
-	if	DeckService.getCentreCard().num == -1:
+	if	action == Action.PLAY_CARD && card.num == -1:
 		_startTurn(i)
 	else:
 		_startTurn((i + 1) % 2)

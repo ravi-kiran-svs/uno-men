@@ -4,7 +4,7 @@ extends Deck
 class_name PlayableDeck
 
 # notify that the player has finished their turn.
-signal PlayerTurnEnd(i)
+signal PlayerTurnEnd(i, action, card)
 signal PlayerDeckEmpty(i)
 
 func _ready():

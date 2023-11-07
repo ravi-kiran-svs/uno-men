@@ -40,7 +40,7 @@ func _takeAction():
 	
 	if	cardsAvailable.size() == 0:
 		_requestCardFromDeck()
-		emit_signal("PlayerTurnEnd", 1)
+		emit_signal("PlayerTurnEnd", 1, GameService.Action.RECEIVE_CARD, null)
 	
 	else:
 		var cardToSend
@@ -60,7 +60,8 @@ func _takeAction():
 			if(_cards_list.size() == 0):
 				emit_signal("PlayerDeckEmpty", 1)
 			else:
-				emit_signal("PlayerTurnEnd", 1)
+				emit_signal("PlayerTurnEnd", 1, 
+				GameService.Action.PLAY_CARD, cardToSend)
 
 func _on_TurnStart(i):
 	if i == 1:

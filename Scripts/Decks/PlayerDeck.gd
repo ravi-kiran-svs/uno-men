@@ -41,12 +41,12 @@ func _onCardButtonPressed(button : Node, card : Card):
 		if(_cards_list.size() == 0):
 			emit_signal("PlayerDeckEmpty", 0)
 		else:
-			emit_signal("PlayerTurnEnd", 0)
+			emit_signal("PlayerTurnEnd", 0, GameService.Action.PLAY_CARD, card)
 
 func _on_RequestCard_pressed():
 	_requestCardFromDeck()
 	
-	emit_signal("PlayerTurnEnd", 0)
+	emit_signal("PlayerTurnEnd", 0, GameService.Action.RECEIVE_CARD, null)
 
 func _on_TurnStart(i):
 	if i == 0:
