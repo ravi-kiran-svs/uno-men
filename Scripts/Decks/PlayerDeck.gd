@@ -52,12 +52,10 @@ func _on_TurnStart(i):
 	if i == 0:
 		var nAvailableCards = 0
 		var centreCard = DeckService.getCentreCard()
-#		print(centreCard.colour)
-#		print(centreCard.num)
 		
-		for cardButton in _cards.get_children():
-			if	(centreCard.colour == cardButton._card.colour || 
-			centreCard.num == cardButton._card.num):
+		for	cardButton in _cards.get_children():
+			var card = cardButton._card
+			if	centreCard.colour == card.colour || centreCard.num == card.num:
 				
 				cardButton.disableButton(false)
 				nAvailableCards += 1

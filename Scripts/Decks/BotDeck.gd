@@ -31,8 +31,19 @@ func _updateDebugText():
 	_text.text = text_string
 
 func _takeAction():
-	if(rand_range(0, 2) < 1):
-		var card = _cards_list[rand_range(0, _cards_list.size())]
+	var cardsAvailable = []
+	var centreCard = DeckService.getCentreCard()
+	
+	for	card in _cards_list:
+		if	centreCard.colour == card.colour || centreCard.num == card.num:
+			cardsAvailable.append(card)
+	
+	if	cardsAvailable.size() == 0:
+		_requestCardFromDeck()
+		emit_signal("PlayerTurnEnd", 1)
+	
+	else:
+		var card = cardsAvailable[rand_range(0, cardsAvailable.size())]
 		
 		var sendSuccess = _addCardToCentre(card)
 		if(sendSuccess):
@@ -40,10 +51,6 @@ func _takeAction():
 				emit_signal("PlayerDeckEmpty", 1)
 			else:
 				emit_signal("PlayerTurnEnd", 1)
-	
-	else:
-		_requestCardFromDeck()
-		emit_signal("PlayerTurnEnd", 1)
 
 func _on_TurnStart(i):
 	if i == 1:
