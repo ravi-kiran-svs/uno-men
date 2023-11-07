@@ -32,6 +32,7 @@ func addCard(card : Card):
 	_cards.add_child(cardButton)
 	#move child etc - to rearrange
 
+# when a card is pressed to be played.
 func _onCardButtonPressed(button : Node, card : Card):
 	var sendSuccess = _addCardToCentre(card)
 	if(sendSuccess):
@@ -49,9 +50,23 @@ func _on_RequestCard_pressed():
 
 func _on_TurnStart(i):
 	if i == 0:
-		$RequestCard.disabled = false
+		var nAvailableCards = 0
+		var centreCard = DeckService.getCentreCard()
+#		print(centreCard.colour)
+#		print(centreCard.num)
+		
 		for cardButton in _cards.get_children():
-			cardButton.disableButton(false)
+			if	(centreCard.colour == cardButton._card.colour || 
+			centreCard.num == cardButton._card.num):
+				
+				cardButton.disableButton(false)
+				nAvailableCards += 1
+			
+			else:
+				cardButton.disableButton(true)
+		
+		if(nAvailableCards == 0):
+			$RequestCard.disabled = false
 
 func _on_TurnEnd(i):
 	if i == 0:

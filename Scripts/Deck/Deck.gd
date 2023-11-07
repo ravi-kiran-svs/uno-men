@@ -17,13 +17,13 @@ func removeCard(card : Card):
 func getTopCard():
 	if(isEmpty()):
 		return null
-	
+
 	else:
 		var card = _cards_list.front()
 		removeCard(card)
 		return card
 
-func peekBackCard() -> Card:
+func peekTopCard() -> Card:
 	return _cards_list.back()
 
 func isEmpty() -> bool:

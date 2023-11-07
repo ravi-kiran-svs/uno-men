@@ -26,6 +26,9 @@ func requestCardFrom(from : Deck) -> Card:
 func requestRefill():
 	return CentreDeck.getAllCardsButTop()
 
+func getCentreCard() -> Card:
+	return CentreDeck.peekTopCard()
+
 # this function is called when the Game Starts - signal from GameService
 # 1. create the initial deck of cards.
 # 2. send it to CardsDeck to be shuffled and split.
