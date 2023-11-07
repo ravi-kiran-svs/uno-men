@@ -19,7 +19,8 @@ func _startTurn(i):
 	emit_signal("TurnStart", i)
 
 func _on_StartGame_pressed():
-	$StartGame.disabled = true;
+	$StartGame.disabled = true
+	$TurnArrow.visible = true
 	
 	emit_signal("GameStart")
 	_startTurn(0)

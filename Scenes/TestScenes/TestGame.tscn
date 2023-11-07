@@ -33,6 +33,7 @@ margin_bottom = 35.0
 text = "Start"
 
 [node name="TurnArrow" parent="GameService" instance=ExtResource( 9 )]
+visible = false
 margin_left = 140.0
 margin_top = -124.0
 margin_right = 268.0
