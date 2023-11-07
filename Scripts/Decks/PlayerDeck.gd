@@ -63,8 +63,6 @@ func _on_TurnStart(i):
 				else:
 					button.disableButton(true)
 		
-		print(nAvailableCards)
-		# bro says 1
 		if(nAvailableCards == 0):
 			$RequestCard.disabled = false
 

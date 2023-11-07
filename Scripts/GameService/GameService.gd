@@ -8,8 +8,14 @@ signal TurnEnd(i)
 enum Action {PLAY_CARD = 0, RECEIVE_CARD = 1}
 
 onready var DeckService = get_node("%DeckService")
+onready var arrow = get_node("TurnArrow")
+
+var _currentTurn = 0
 
 func _startTurn(i):
+	arrow.turn(_currentTurn, i)
+	
+	_currentTurn = i
 	emit_signal("TurnStart", i)
 
 func _on_StartGame_pressed():
