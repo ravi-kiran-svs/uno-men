@@ -53,16 +53,18 @@ func _on_TurnStart(i):
 		var nAvailableCards = 0
 		var centreCard = DeckService.getCentreCard()
 		
-		for	cardButton in _cards.get_children():
-			var card = cardButton._card
-			if	centreCard.colour == card.colour || centreCard.num == card.num:
+		for	button in _cards.get_children():
+			if	!button.is_queued_for_deletion():
+				var card = button._card
 				
-				cardButton.disableButton(false)
-				nAvailableCards += 1
-			
-			else:
-				cardButton.disableButton(true)
+				if	centreCard.colour == card.colour || centreCard.num == card.num:
+					button.disableButton(false)
+					nAvailableCards += 1
+				else:
+					button.disableButton(true)
 		
+		print(nAvailableCards)
+		# bro says 1
 		if(nAvailableCards == 0):
 			$RequestCard.disabled = false
 

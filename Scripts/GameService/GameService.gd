@@ -4,6 +4,8 @@ signal GameStart
 signal TurnStart(i)
 signal TurnEnd(i)
 
+onready var DeckService = get_node("%DeckService")
+
 func _startTurn(i):
 	emit_signal("TurnStart", i)
 
@@ -14,13 +16,12 @@ func _on_StartGame_pressed():
 	_startTurn(0)
 
 func _on_PlayerTurnEnd(i : int):
-	if i == 0:
-		emit_signal("TurnEnd", 0)
-		_startTurn(1)
+	emit_signal("TurnEnd", i)
 	
+	if	DeckService.getCentreCard().num == -1:
+		_startTurn(i)
 	else:
-		emit_signal("TurnEnd", 1)
-		_startTurn(0)
+		_startTurn((i + 1) % 2)
 
 func _on_PlayerDeckEmpty(i : int):
 	if i == 0:
