@@ -43,9 +43,19 @@ func _takeAction():
 		emit_signal("PlayerTurnEnd", 1)
 	
 	else:
-		var card = cardsAvailable[rand_range(0, cardsAvailable.size())]
+		var cardToSend
 		
-		var sendSuccess = _addCardToCentre(card)
+		var isTurnSkipper = false
+		for	card in cardsAvailable:
+			if	card.num == -1:
+				isTurnSkipper = true
+				cardToSend = card
+				break
+		
+		if(!isTurnSkipper):
+			cardToSend = cardsAvailable[rand_range(0, cardsAvailable.size())]
+		
+		var sendSuccess = _addCardToCentre(cardToSend)
 		if(sendSuccess):
 			if(_cards_list.size() == 0):
 				emit_signal("PlayerDeckEmpty", 1)
