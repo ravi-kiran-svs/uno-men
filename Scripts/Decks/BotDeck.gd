@@ -5,6 +5,7 @@ export var tThink : float = 3
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
 onready var _think = get_node("ThinkingIcon")
+onready var _unoCloudAnim = get_node("UNOTextCloud/AnimationPlayer")
 
 func _ready():
 	for i in range(1, 10):
@@ -58,7 +59,10 @@ func _takeAction():
 		
 		var sendSuccess = _addCardToCentre(cardToSend)
 		if(sendSuccess):
-			if(_cards_list.size() == 0):
+#			if	_cards_list.size() == 1:
+#				_unoCloudAnim.play("move_down")
+			
+			if	_cards_list.size() == 0:
 				emit_signal("PlayerDeckEmpty", 1)
 			else:
 				emit_signal("PlayerTurnEnd", 1, 

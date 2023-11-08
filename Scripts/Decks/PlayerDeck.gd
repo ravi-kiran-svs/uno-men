@@ -5,6 +5,7 @@ var CardButton = preload("res://Nodes/Card/CardButton.tscn")
 
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
+onready var _unoCloudAnim = get_node("UNOTextCloud/AnimationPlayer")
 
 func _ready():
 	for cardView in _cards.get_children():
@@ -44,7 +45,10 @@ func _onCardButtonPressed(button : Node, card : Card):
 	if(sendSuccess):
 		button.queue_free()
 		
-		if(_cards_list.size() == 0):
+#		if	_cards_list.size() == 1:
+#			_unoCloudAnim.play("move_up")
+		
+		if	_cards_list.size() == 0:
 			emit_signal("PlayerDeckEmpty", 0)
 		else:
 			emit_signal("PlayerTurnEnd", 0, GameService.Action.PLAY_CARD, card)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Decks/CardsDeck.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Decks/CentreDeck.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scripts/UI/Menu/Menu.gd" type="Script" id=13]
 [ext_resource path="res://Art/Sprites/BG.png" type="Texture" id=14]
 [ext_resource path="res://Art/Sprites/loading.png" type="Texture" id=15]
+[ext_resource path="res://Nodes/UI/UNOTextCloud.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -612,7 +613,6 @@ margin_bottom = 68.0001
 text = "PLAY"
 
 [node name="Game" type="Control" parent="MenuService"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -817,6 +817,13 @@ margin_right = 343.0
 margin_bottom = 64.0
 disabled = true
 text = "Request"
+
+[node name="UNOTextCloud" parent="MenuService/Game/DeckService/PlayerDeck" instance=ExtResource( 16 )]
+visible = false
+margin_left = 140.0
+margin_top = -87.9999
+margin_right = 268.0
+margin_bottom = -23.9999
 
 [node name="BotDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_left = 0.5
@@ -1044,6 +1051,16 @@ margin_bottom = 64.0
 text = "bot deck"
 autowrap = true
 
+[node name="UNOTextCloud" parent="MenuService/Game/DeckService/BotDeck" instance=ExtResource( 16 )]
+visible = false
+margin_left = 140.0
+margin_top = 16.0
+margin_right = 268.0
+margin_bottom = 80.0
+
+[node name="Cloud" parent="MenuService/Game/DeckService/BotDeck/UNOTextCloud" index="0"]
+flip_v = true
+
 [node name="CardSendAnimService" type="Control" parent="MenuService/Game"]
 unique_name_in_owner = true
 anchor_left = 0.5
@@ -1064,7 +1081,6 @@ margin_bottom = 96.0
 rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="GameOverMenu" type="Control" parent="MenuService"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1100,8 +1116,8 @@ margin_right = 136.0
 margin_bottom = 176.0
 text = "REPLAY"
 
-[connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
+[connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
 [connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService" method="_onGameStart"]
 [connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/CentreDeck" method="_onGameStart"]
 [connection signal="TurnEnd" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/PlayerDeck" method="_on_TurnEnd"]
@@ -1114,8 +1130,8 @@ text = "REPLAY"
 [connection signal="PlayerDeckEmpty" from="MenuService/Game/DeckService/BotDeck" to="MenuService/Game/GameService" method="_on_PlayerDeckEmpty"]
 [connection signal="PlayerTurnEnd" from="MenuService/Game/DeckService/BotDeck" to="MenuService/Game/GameService" method="_on_PlayerTurnEnd"]
 [connection signal="tween_completed" from="MenuService/Game/CardSendAnimService/Tween" to="MenuService/Game/CardSendAnimService" method="_onTweenCompleted"]
-[connection signal="pressed" from="MenuService/GameOverMenu/ReplayButton" to="MenuService/Game/GameService" method="_on_ReplayButton_pressed"]
 [connection signal="pressed" from="MenuService/GameOverMenu/ReplayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
+[connection signal="pressed" from="MenuService/GameOverMenu/ReplayButton" to="MenuService/Game/GameService" method="_on_ReplayButton_pressed"]
 
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard1"]
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard2"]
@@ -1129,3 +1145,4 @@ text = "REPLAY"
 [editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card7"]
 [editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card8"]
 [editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card9"]
+[editable path="MenuService/Game/DeckService/BotDeck/UNOTextCloud"]
