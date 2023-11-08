@@ -6,8 +6,10 @@ var CardButton = preload("res://Nodes/Card/CardButton.tscn")
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
 onready var _unoCloudAnim = get_node("UNOTextCloud/AnimationPlayer")
+onready var _requestCard = get_node("RequestCard/Button")
 
 func _ready():
+	_requestCard.disabled = true
 	for cardView in _cards.get_children():
 		cardView.queue_free()
 
@@ -74,10 +76,10 @@ func _on_TurnStart(i):
 					button.disableButton(true)
 		
 		if(nAvailableCards == 0):
-			$RequestCard.disabled = false
+			_requestCard.disabled = false
 
 func _on_TurnEnd(i):
 	if i == 0:
-		$RequestCard.disabled = true
+		_requestCard.disabled = true
 		for cardButton in _cards.get_children():
 			cardButton.disableButton(true)
