@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Decks/CardsDeck.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Decks/CentreDeck.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Art/Sprites/BG.png" type="Texture" id=14]
 [ext_resource path="res://Art/Sprites/loading.png" type="Texture" id=15]
 [ext_resource path="res://Nodes/UI/UNOTextCloud.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Art/Sprites/TitlesAndButtons.png" type="Texture" id=17]
+[ext_resource path="res://Nodes/UI/UIButton.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -52,7 +54,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Title:rect_position")
+tracks/0/path = NodePath("PlayButton:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -61,27 +63,15 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 512, 208 ) ]
+"values": [ Vector2( 576, 364 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayButton:rect_position")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 576, 364 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -92,7 +82,7 @@ tracks/2/keys = {
 resource_name = "enter"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Title:rect_position")
+tracks/0/path = NodePath("PlayButton:rect_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -101,27 +91,15 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 512, -128 ), Vector2( 512, 208 ) ]
+"values": [ Vector2( 576, 750 ), Vector2( 576, 364 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayButton:rect_position")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 576, 750 ), Vector2( 576, 364 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -132,7 +110,7 @@ tracks/2/keys = {
 resource_name = "exit"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Title:rect_position")
+tracks/0/path = NodePath("PlayButton:rect_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -141,34 +119,27 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 512, 208 ), Vector2( 512, -128 ) ]
+"values": [ Vector2( 576, 364 ), Vector2( 576, 750 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayButton:rect_position")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 576, 364 ), Vector2( 576, 750 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="Animation" id=19]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("DeckService/CentreDeck:rect_scale")
@@ -183,7 +154,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DeckService/CardsDeck:rect_position")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -192,10 +163,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 260 ) ]
+"values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("GameService/TurnArrow:rect_position")
+tracks/2/path = NodePath("GameService/TurnArrow:margin_left")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -204,10 +175,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 780, 236 ) ]
+"values": [ -500.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("DeckService/BotDeck:rect_position")
+tracks/3/path = NodePath("DeckService/CardsDeck:margin_right")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -216,10 +187,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 16 ) ]
+"values": [ 501.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("DeckService/PlayerDeck:rect_position")
+tracks/4/path = NodePath("DeckService/BotDeck:margin_bottom")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -228,10 +199,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 464 ) ]
+"values": [ 144.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath(".:visible")
+tracks/5/path = NodePath("DeckService/PlayerDeck:margin_top")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -240,7 +211,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ -256.0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -259,19 +230,19 @@ tracks/0/keys = {
 "values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DeckService/CardsDeck:rect_position")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -240, 260 ), Vector2( 0, 260 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("GameService/TurnArrow:rect_position")
+tracks/2/path = NodePath("GameService/TurnArrow:margin_left")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -280,10 +251,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1300, 236 ), Vector2( 780, 236 ) ]
+"values": [ 20.0, -500.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("DeckService/BotDeck:rect_position")
+tracks/3/path = NodePath("DeckService/CardsDeck:margin_right")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -292,10 +263,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -160 ), Vector2( 0, 16 ) ]
+"values": [ -20.0, 501.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("DeckService/PlayerDeck:rect_position")
+tracks/4/path = NodePath("DeckService/BotDeck:margin_bottom")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -304,23 +275,22 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 750 ), Vector2( 0, 464 ) ]
+"values": [ -20.0, 144.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath(".:visible")
-tracks/5/interp = 1
+tracks/5/path = NodePath("DeckService/PlayerDeck:margin_top")
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 84.0, -256.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "exit"
+[sub_resource type="Animation" id=20]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("DeckService/CentreDeck:rect_scale")
@@ -335,19 +305,19 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DeckService/CardsDeck:rect_position")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 260 ), Vector2( -240, 260 ) ]
+"update": 1,
+"values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("GameService/TurnArrow:rect_position")
+tracks/2/path = NodePath("GameService/TurnArrow:margin_left")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -356,10 +326,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 780, 236 ), Vector2( 1300, 236 ) ]
+"values": [ -500.0, 20.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("DeckService/BotDeck:rect_position")
+tracks/3/path = NodePath("DeckService/CardsDeck:margin_right")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -368,10 +338,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 16 ), Vector2( 0, -160 ) ]
+"values": [ 501.0, -20.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("DeckService/PlayerDeck:rect_position")
+tracks/4/path = NodePath("DeckService/BotDeck:margin_bottom")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -380,19 +350,19 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 464 ), Vector2( 0, 750 ) ]
+"values": [ 144.0, -20.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath(".:visible")
-tracks/5/interp = 1
+tracks/5/path = NodePath("DeckService/PlayerDeck:margin_top")
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ -256.0, 84.0 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -586,32 +556,19 @@ anims/RESET = SubResource( 1 )
 anims/enter = SubResource( 3 )
 anims/exit = SubResource( 2 )
 
-[node name="Title" type="Label" parent="MenuService/MainMenu"]
+[node name="Title" type="TextureRect" parent="MenuService/MainMenu"]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 margin_left = -128.0
-margin_top = -152.0
+margin_top = 64.0
 margin_right = 128.0
-margin_bottom = -23.9996
-text = "UNO
-LITE
-create by RK."
-align = 1
-valign = 1
-autowrap = true
+margin_bottom = 320.0
+grow_vertical = 0
+rect_min_size = Vector2( 256, 256 )
+texture = SubResource( 14 )
+expand = true
 
-[node name="PlayButton" type="Button" parent="MenuService/MainMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = 4.0
-margin_right = 64.0
-margin_bottom = 68.0001
-text = "PLAY"
+[node name="PlayButton" parent="MenuService/MainMenu" instance=ExtResource( 18 )]
 
 [node name="Game" type="Control" parent="MenuService"]
 visible = false
@@ -622,9 +579,9 @@ script = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuService/Game"]
 reset_on_save = false
-anims/RESET = SubResource( 5 )
+anims/RESET = SubResource( 19 )
 anims/enter = SubResource( 6 )
-anims/exit = SubResource( 4 )
+anims/exit = SubResource( 20 )
 
 [node name="GameService" type="Control" parent="MenuService/Game"]
 unique_name_in_owner = true
@@ -634,9 +591,11 @@ mouse_filter = 2
 script = ExtResource( 6 )
 
 [node name="TurnArrow" parent="MenuService/Game/GameService" instance=ExtResource( 9 )]
-margin_left = 140.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -500.0
 margin_top = -124.0
-margin_right = 268.0
+margin_right = -372.0
 margin_bottom = 4.0
 tTween = 0.3
 
@@ -651,9 +610,12 @@ N = 1
 [node name="CardsDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -100.0
-margin_right = 200.0
-margin_bottom = 100.0
+margin_left = 373.0
+margin_top = -124.0
+margin_right = 501.0
+margin_bottom = 4.0
+grow_horizontal = 0
+rect_min_size = Vector2( 128, 128 )
 mouse_filter = 2
 script = ExtResource( 1 )
 
@@ -664,10 +626,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 
 [node name="DebugLabel" type="Label" parent="MenuService/Game/DeckService/CardsDeck"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Deck cards ..."
 autowrap = true
+
+[node name="BackCardView" parent="MenuService/Game/DeckService/CardsDeck" instance=ExtResource( 11 )]
 
 [node name="CentreDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_left = 0.5
@@ -749,6 +714,7 @@ anchor_bottom = 1.0
 margin_left = -640.0
 margin_top = -256.0
 margin_right = 640.0
+rect_min_size = Vector2( 0, 256 )
 mouse_filter = 2
 script = ExtResource( 3 )
 
@@ -814,9 +780,9 @@ autowrap = true
 [node name="RequestCard" type="Button" parent="MenuService/Game/DeckService/PlayerDeck"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 268.0
-margin_right = 343.0
-margin_bottom = 64.0
+margin_left = -267.0
+margin_top = -64.0
+margin_right = -139.0
 disabled = true
 text = "Request"
 
@@ -834,6 +800,8 @@ margin_left = -640.0
 margin_top = 16.0
 margin_right = 640.0
 margin_bottom = 144.0
+grow_vertical = 0
+rect_min_size = Vector2( 1280, 128 )
 mouse_filter = 2
 script = ExtResource( 4 )
 tThink = 1.0
@@ -1114,14 +1082,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -136.0
-margin_top = 32.0
-margin_right = 136.0
-margin_bottom = 176.0
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
 text = "REPLAY"
 
-[connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
-[connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MenuService/MainMenu/PlayButton/Button" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
+[connection signal="pressed" from="MenuService/MainMenu/PlayButton/Button" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
 [connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService" method="_onGameStart"]
 [connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/CentreDeck" method="_onGameStart"]
 [connection signal="TurnEnd" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/PlayerDeck" method="_on_TurnEnd"]
@@ -1137,6 +1105,7 @@ text = "REPLAY"
 [connection signal="pressed" from="MenuService/GameOverMenu/ReplayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
 [connection signal="pressed" from="MenuService/GameOverMenu/ReplayButton" to="MenuService/Game/GameService" method="_on_ReplayButton_pressed"]
 
+[editable path="MenuService/MainMenu/PlayButton"]
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard1"]
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard2"]
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard3"]
