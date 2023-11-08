@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/Decks/CardsDeck.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Decks/CentreDeck.gd" type="Script" id=2]
@@ -13,6 +13,38 @@
 [ext_resource path="res://Nodes/Card/BackCardView.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/UI/Menu/MenuService.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/UI/Menu/Menu.gd" type="Script" id=13]
+[ext_resource path="res://Art/Sprites/BG.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "play"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -482,6 +514,25 @@ tracks/2/keys = {
 [node name="UNOLITE" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1024.0
+margin_top = -1024.0
+margin_right = 1024.0
+margin_bottom = 1024.0
+rect_pivot_offset = Vector2( 1024, 1024 )
+texture = ExtResource( 14 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG"]
+autoplay = "play"
+playback_speed = 0.25
+anims/RESET = SubResource( 10 )
+anims/play = SubResource( 11 )
 
 [node name="MenuService" type="Control" parent="."]
 unique_name_in_owner = true
