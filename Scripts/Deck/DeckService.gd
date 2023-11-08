@@ -26,6 +26,7 @@ func requestCardFrom(from : Deck) -> Card:
 func requestRefill():
 	return CentreDeck.getAllCardsButTop()
 
+# peek at the centre card.
 func getCentreCard() -> Card:
 	return CentreDeck.peekTopCard()
 

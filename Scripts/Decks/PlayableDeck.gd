@@ -1,9 +1,8 @@
 # This is class acts as a parent class for any deck of cards
-# that participate in the game.
+# that participate in the game (Player and Bot).
 extends Deck
 class_name PlayableDeck
 
-# notify that the player has finished their turn.
 signal PlayerTurnEnd(i, action, card)
 signal PlayerDeckEmpty(i)
 

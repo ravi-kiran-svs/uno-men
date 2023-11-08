@@ -1,3 +1,4 @@
+# This class is responsible for the deck of cards in the Bot's hand.
 extends PlayableDeck
 
 export var tThink : float = 3
@@ -32,6 +33,11 @@ func _updateDebugText():
 	
 	_text.text = text_string
 
+# the bot goes through all the cards to filter out playable cards.
+# if there are none => request for a new card is sent.
+# the bot checks if any 'turn skipper' card is present.
+# if yes => 'turn skipper' is played as they provide advantage.
+# else => random card available is played.
 func _takeAction():
 	var cardsAvailable = []
 	var centreCard = DeckService.getCentreCard()
@@ -67,6 +73,7 @@ func _takeAction():
 			else:
 				emit_signal("PlayerTurnEnd", 1, 
 				GameService.Action.PLAY_CARD, cardToSend)
+
 
 func _on_TurnStart(i):
 	if i == 1:

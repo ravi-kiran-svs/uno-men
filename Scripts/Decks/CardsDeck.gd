@@ -23,12 +23,12 @@ func shuffleAndSplit(deck, n):
 	
 	_addTopCardTo(DeckService.CentreDeck)
 
-# overrides the method in parent class.
+# overrides the method in parent class
+# to checks if the deck is out of cards.
+# if yes => requests new cards, shuffles and adds into the deck.
 func removeCard(card : Card):
 	.removeCard(card)
 	
-	# checks if the deck is out of cards.
-	# if yes => requests new cards, shuffles and adds into the deck.
 	if(_cards_list.size() <= 1):
 		var cards = DeckService.requestRefill()
 		cards.shuffle()
@@ -37,7 +37,8 @@ func removeCard(card : Card):
 
 func updateView():
 	_updateDebugText()
-	
+
+# used for debugging purposes.
 func _updateDebugText():
 	var text_string = ""
 	

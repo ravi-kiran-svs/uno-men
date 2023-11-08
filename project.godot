@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="UNO MEN"
-run/main_scene="res://Scenes/TestScenes/TestGame.tscn"
+run/main_scene="res://Scenes/UNOLITE.tscn"
 config/icon="res://icon.png"
 
 [display]

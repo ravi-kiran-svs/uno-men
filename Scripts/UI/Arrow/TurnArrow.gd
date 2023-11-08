@@ -1,5 +1,8 @@
+# This class is responsible for the Arrow that points 
+# towards the player with the current turn.
 extends TextureRect
 
+# the tween is used to animate between two angles.
 onready var tween = get_node("Tween")
 
 export var tTween = 0.1

@@ -15,7 +15,8 @@ func _ready():
 
 func updateView():
 	_updateDebugText()
-	
+
+# used for debugging purposes.
 func _updateDebugText():
 	var text_string = ""
 	
@@ -26,6 +27,7 @@ func _updateDebugText():
 	_text.text = text_string
 
 # overriding the function to update card buttons when new card added.
+# card buttons are added in a sorted order - RED, YELLOW, BLUE and GREEN.
 func addCard(card : Card):
 	.addCard(card)
 	
@@ -74,6 +76,9 @@ func _on_RequestCard_pressed():
 	
 	emit_signal("PlayerTurnEnd", 0, GameService.Action.RECEIVE_CARD, null)
 
+# when the player's turn starts
+# buttons that match the centre card are the only ones to be set active.
+# if no button is active => request button is set active.
 func _on_TurnStart(i):
 	if i == 0:
 		var nAvailableCards = 0
@@ -92,6 +97,7 @@ func _on_TurnStart(i):
 		if(nAvailableCards == 0):
 			_requestCard.disabled = false
 
+# all buttons are disabled when the turn is over.
 func _on_TurnEnd(i):
 	if i == 0:
 		_requestCard.disabled = true

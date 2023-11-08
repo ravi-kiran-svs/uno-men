@@ -14,7 +14,9 @@ func updateView():
 	_updateCardsView()
 	_updateDebugText()
 
-# updates the CardViews in the centre deck
+# updates the CardViews in the centre deck.
+# deckcards 1,2,3 appear based on number of cards
+# to create an illusion of depth and reality.
 func _updateCardsView():
 	if	!isEmpty():
 		_topCard.showFront(_cards_list.back())

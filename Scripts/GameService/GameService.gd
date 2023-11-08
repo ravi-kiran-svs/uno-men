@@ -1,3 +1,4 @@
+# This class is responsible for the main game loop.
 extends Control
 class_name GameService
 
@@ -17,6 +18,7 @@ var _currentTurn = 0
 func _ready():
 	arrow.visible = false
 
+# arrow is turned towards the player whose turn it is.
 func _startTurn(i):
 	arrow.turn(_currentTurn, i)
 	
@@ -34,6 +36,8 @@ func _on_ReplayButton_pressed():
 	
 	_on_PlayButton_pressed()
 
+# when a turn ends, checks for turn skipper.
+# if yes => skips the next turn.
 func _on_PlayerTurnEnd(i : int, action : int, card : Card):
 	emit_signal("TurnEnd", i)
 	
@@ -42,6 +46,7 @@ func _on_PlayerTurnEnd(i : int, action : int, card : Card):
 	else:
 		_startTurn((i + 1) % 2)
 
+# deck being empty is the state of winner.
 func _on_PlayerDeckEmpty(i : int):
 	if	i == 0:
 		emit_signal("PlayerWin")
