@@ -16,7 +16,8 @@ func updateView():
 
 # updates the CardViews in the centre deck
 func _updateCardsView():
-	_topCard.showFront(_cards_list.back())
+	if	!isEmpty():
+		_topCard.showFront(_cards_list.back())
 	
 	var n = _cards_list.size()
 	_deckCards.get_node("DeckCard1").visible = n>=2
@@ -25,8 +26,9 @@ func _updateCardsView():
 
 # used for debugging purposes.
 func _updateDebugText():
-	_text.text = String(_cards_list.back().colour) + " "
-	_text.text += String(_cards_list.back().num) + "\n"
+	if	!isEmpty():
+		_text.text = String(_cards_list.back().colour) + " "
+		_text.text += String(_cards_list.back().num) + "\n"
 	
 	var text_string = ""
 	for i in _cards_list.size():

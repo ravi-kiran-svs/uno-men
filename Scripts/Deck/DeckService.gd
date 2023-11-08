@@ -29,6 +29,12 @@ func requestRefill():
 func getCentreCard() -> Card:
 	return CentreDeck.peekTopCard()
 
+func emptyAllDecks():
+	CardsDeck.emptyDeck()
+	CentreDeck.emptyDeck()
+	PlayerDeck.emptyDeck()
+	BotDeck.emptyDeck()
+
 # this function is called when the Game Starts - signal from GameService
 # 1. create the initial deck of cards.
 # 2. send it to CardsDeck to be shuffled and split.

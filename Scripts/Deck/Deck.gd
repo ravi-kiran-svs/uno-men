@@ -29,5 +29,9 @@ func peekTopCard() -> Card:
 func isEmpty() -> bool:
 	return _cards_list.empty()
 
+func emptyDeck():
+	_cards_list.clear()
+	updateView()
+
 func updateView():
 	pass

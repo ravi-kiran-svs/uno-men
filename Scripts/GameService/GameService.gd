@@ -27,6 +27,11 @@ func _on_PlayButton_pressed():
 	emit_signal("GameStart")
 	_startTurn(0)
 
+func _on_ReplayButton_pressed():
+	DeckService.emptyAllDecks()
+	
+	_on_PlayButton_pressed()
+
 func _on_PlayerTurnEnd(i : int, action : int, card : Card):
 	emit_signal("TurnEnd", i)
 	
@@ -43,3 +48,4 @@ func _on_PlayerDeckEmpty(i : int):
 		print("YOU LOSE")
 	
 	get_node("%MenuService").changeMenuTo(MenuService.Menus.GAME_OVER_MENU)
+

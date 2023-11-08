@@ -32,6 +32,12 @@ func addCard(card : Card):
 	_cards.add_child(cardButton)
 	#move child etc - to rearrange
 
+func emptyDeck():
+	.emptyDeck()
+	
+	for cardButton in _cards.get_children():
+		cardButton.queue_free()
+
 # when a card is pressed to be played.
 func _onCardButtonPressed(button : Node, card : Card):
 	var sendSuccess = _addCardToCentre(card)
