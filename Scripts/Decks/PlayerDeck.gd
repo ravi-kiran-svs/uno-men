@@ -45,8 +45,8 @@ func _onCardButtonPressed(button : Node, card : Card):
 	if(sendSuccess):
 		button.queue_free()
 		
-#		if	_cards_list.size() == 1:
-#			_unoCloudAnim.play("move_up")
+		if	_cards_list.size() == 1:
+			_unoCloudAnim.play("move_up")
 		
 		if	_cards_list.size() == 0:
 			emit_signal("PlayerDeckEmpty", 0)

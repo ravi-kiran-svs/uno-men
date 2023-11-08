@@ -59,8 +59,8 @@ func _takeAction():
 		
 		var sendSuccess = _addCardToCentre(cardToSend)
 		if(sendSuccess):
-#			if	_cards_list.size() == 1:
-#				_unoCloudAnim.play("move_down")
+			if	_cards_list.size() == 1:
+				_unoCloudAnim.play("move_down")
 			
 			if	_cards_list.size() == 0:
 				emit_signal("PlayerDeckEmpty", 1)
