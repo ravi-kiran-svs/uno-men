@@ -4,6 +4,8 @@ class_name GameService
 signal GameStart
 signal TurnStart(i)
 signal TurnEnd(i)
+signal PlayerWin
+signal PlayerLose
 
 enum Action {PLAY_CARD = 0, RECEIVE_CARD = 1}
 
@@ -41,11 +43,10 @@ func _on_PlayerTurnEnd(i : int, action : int, card : Card):
 		_startTurn((i + 1) % 2)
 
 func _on_PlayerDeckEmpty(i : int):
-	if i == 0:
-		print("YOU WIN")
-	
+	if	i == 0:
+		emit_signal("PlayerWin")
 	else:
-		print("YOU LOSE")
+		emit_signal("PlayerLose")
 	
 	get_node("%MenuService").changeMenuTo(MenuService.Menus.GAME_OVER_MENU)
 

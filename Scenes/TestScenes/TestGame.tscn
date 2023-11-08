@@ -597,6 +597,7 @@ anchor_bottom = 1.0
 script = ExtResource( 12 )
 
 [node name="MainMenu" type="Control" parent="MenuService"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -625,7 +626,6 @@ margin_top = 64.0
 margin_bottom = 184.0
 
 [node name="Game" type="Control" parent="MenuService"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1152,6 +1152,10 @@ texture = ExtResource( 19 )
 [connection signal="pressed" from="MenuService/MainMenu/PlayButton/Button" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
 [connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService" method="_onGameStart"]
 [connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/CentreDeck" method="_onGameStart"]
+[connection signal="PlayerLose" from="MenuService/Game/GameService" to="MenuService/GameOverMenu/GOMessage/YouWin" method="set_visible" binds= [ false ]]
+[connection signal="PlayerLose" from="MenuService/Game/GameService" to="MenuService/GameOverMenu/GOMessage/YouLose" method="set_visible" binds= [ true ]]
+[connection signal="PlayerWin" from="MenuService/Game/GameService" to="MenuService/GameOverMenu/GOMessage/YouWin" method="set_visible" binds= [ true ]]
+[connection signal="PlayerWin" from="MenuService/Game/GameService" to="MenuService/GameOverMenu/GOMessage/YouLose" method="set_visible" binds= [ false ]]
 [connection signal="TurnEnd" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/PlayerDeck" method="_on_TurnEnd"]
 [connection signal="TurnEnd" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/BotDeck" method="_on_TurnEnd"]
 [connection signal="TurnStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/PlayerDeck" method="_on_TurnStart"]
