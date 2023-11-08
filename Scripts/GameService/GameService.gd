@@ -21,8 +21,7 @@ func _startTurn(i):
 	_currentTurn = i
 	emit_signal("TurnStart", i)
 
-func _on_StartGame_pressed():
-	$StartGame.disabled = true
+func _on_PlayButton_pressed():
 	arrow.visible = true
 	
 	emit_signal("GameStart")

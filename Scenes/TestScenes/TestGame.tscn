@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Decks/CardsDeck.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Decks/CentreDeck.gd" type="Script" id=2]
@@ -11,44 +11,437 @@
 [ext_resource path="res://Nodes/UI/TurnArrow.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/UI/CardSendAnim/CardSendAnimService.gd" type="Script" id=10]
 [ext_resource path="res://Nodes/Card/BackCardView.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/UI/Menu/MenuService.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/UI/Menu/Menu.gd" type="Script" id=13]
 
-[node name="TestGame" type="Control"]
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 512, 208 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayButton:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 576, 364 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, -128 ), Vector2( 512, 208 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayButton:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 576, 750 ), Vector2( 576, 364 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "exit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, 208 ), Vector2( 512, -128 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayButton:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 576, 364 ), Vector2( 576, 750 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeckService/CentreDeck:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeckService/CardsDeck:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 260 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameService/TurnArrow:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 780, 236 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DeckService/BotDeck:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DeckService/PlayerDeck:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 464 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeckService/CentreDeck:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeckService/CardsDeck:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -240, 260 ), Vector2( 0, 260 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameService/TurnArrow:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1300, 236 ), Vector2( 780, 236 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DeckService/BotDeck:rect_position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -160 ), Vector2( 0, 16 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DeckService/PlayerDeck:rect_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 750 ), Vector2( 0, 464 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "exit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeckService/CentreDeck:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeckService/CardsDeck:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 260 ), Vector2( -240, 260 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameService/TurnArrow:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 780, 236 ), Vector2( 1300, 236 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DeckService/BotDeck:rect_position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ), Vector2( 0, -160 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DeckService/PlayerDeck:rect_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 464 ), Vector2( 0, 750 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="UNOLITE" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="GameService" type="Control" parent="."]
+[node name="MenuService" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 12 )
+
+[node name="MainMenu" type="Control" parent="MenuService"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 13 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuService/MainMenu"]
+anims/RESET = SubResource( 1 )
+anims/enter = SubResource( 3 )
+anims/exit = SubResource( 2 )
+
+[node name="Title" type="Label" parent="MenuService/MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -152.0
+margin_right = 128.0
+margin_bottom = -23.9996
+text = "UNO
+LITE
+create by RK."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="PlayButton" type="Button" parent="MenuService/MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = 4.0
+margin_right = 64.0
+margin_bottom = 68.0001
+text = "Play"
+
+[node name="Game" type="Control" parent="MenuService"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 13 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuService/Game"]
+anims/RESET = SubResource( 5 )
+anims/enter = SubResource( 6 )
+anims/exit = SubResource( 4 )
+
+[node name="GameService" type="Control" parent="MenuService/Game"]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 6 )
 
-[node name="StartGame" type="Button" parent="GameService"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -35.0
-margin_right = -50.0
-margin_bottom = 35.0
-text = "Start"
-
-[node name="TurnArrow" parent="GameService" instance=ExtResource( 9 )]
+[node name="TurnArrow" parent="MenuService/Game/GameService" instance=ExtResource( 9 )]
 margin_left = 140.0
 margin_top = -124.0
 margin_right = 268.0
 margin_bottom = 4.0
 tTween = 0.3
 
-[node name="DeckService" type="Control" parent="."]
+[node name="DeckService" type="Control" parent="MenuService/Game"]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 5 )
 
-[node name="CardsDeck" type="Control" parent="DeckService"]
+[node name="CardsDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -100.0
@@ -57,19 +450,19 @@ margin_bottom = 100.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
-[node name="CentrePoint" type="Control" parent="DeckService/CardsDeck"]
+[node name="CentrePoint" type="Control" parent="MenuService/Game/DeckService/CardsDeck"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="DebugLabel" type="Label" parent="DeckService/CardsDeck"]
+[node name="DebugLabel" type="Label" parent="MenuService/Game/DeckService/CardsDeck"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Deck cards ..."
 autowrap = true
 
-[node name="CentreDeck" type="Control" parent="DeckService"]
+[node name="CentreDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -79,13 +472,13 @@ margin_bottom = -60.0
 mouse_filter = 2
 script = ExtResource( 2 )
 
-[node name="CentrePoint" type="Control" parent="DeckService/CentreDeck"]
+[node name="CentrePoint" type="Control" parent="MenuService/Game/DeckService/CentreDeck"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="DebugLabel" type="Label" parent="DeckService/CentreDeck"]
+[node name="DebugLabel" type="Label" parent="MenuService/Game/DeckService/CentreDeck"]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
@@ -99,7 +492,7 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="DeckCards" type="Control" parent="DeckService/CentreDeck"]
+[node name="DeckCards" type="Control" parent="MenuService/Game/DeckService/CentreDeck"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -109,39 +502,39 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 
-[node name="DeckCard1" parent="DeckService/CentreDeck/DeckCards" instance=ExtResource( 7 )]
+[node name="DeckCard1" parent="MenuService/Game/DeckService/CentreDeck/DeckCards" instance=ExtResource( 7 )]
 rect_rotation = -75.0
 rect_pivot_offset = Vector2( 64, 64 )
 
-[node name="BG" parent="DeckService/CentreDeck/DeckCards/DeckCard1" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard1" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/CentreDeck/DeckCards/DeckCard1" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard1" index="1"]
 visible = false
 
-[node name="DeckCard2" parent="DeckService/CentreDeck/DeckCards" instance=ExtResource( 7 )]
+[node name="DeckCard2" parent="MenuService/Game/DeckService/CentreDeck/DeckCards" instance=ExtResource( 7 )]
 rect_rotation = 157.5
 rect_pivot_offset = Vector2( 64, 64 )
 
-[node name="BG" parent="DeckService/CentreDeck/DeckCards/DeckCard2" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard2" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/CentreDeck/DeckCards/DeckCard2" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard2" index="1"]
 visible = false
 
-[node name="DeckCard3" parent="DeckService/CentreDeck/DeckCards" instance=ExtResource( 7 )]
+[node name="DeckCard3" parent="MenuService/Game/DeckService/CentreDeck/DeckCards" instance=ExtResource( 7 )]
 rect_rotation = 225.0
 rect_pivot_offset = Vector2( 64, 64 )
 
-[node name="BG" parent="DeckService/CentreDeck/DeckCards/DeckCard3" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard3" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/CentreDeck/DeckCards/DeckCard3" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard3" index="1"]
 visible = false
 
-[node name="TopCard" parent="DeckService/CentreDeck" instance=ExtResource( 7 )]
+[node name="TopCard" parent="MenuService/Game/DeckService/CentreDeck" instance=ExtResource( 7 )]
 
-[node name="PlayerDeck" type="Control" parent="DeckService"]
+[node name="PlayerDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -149,29 +542,30 @@ anchor_bottom = 1.0
 margin_left = -640.0
 margin_top = -256.0
 margin_right = 640.0
+margin_bottom = -0.000183105
 mouse_filter = 2
 script = ExtResource( 3 )
 
-[node name="CentrePoint" type="Control" parent="DeckService/PlayerDeck"]
+[node name="CentrePoint" type="Control" parent="MenuService/Game/DeckService/PlayerDeck"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="CenterContainer" type="CenterContainer" parent="DeckService/PlayerDeck"]
+[node name="CenterContainer" type="CenterContainer" parent="MenuService/Game/DeckService/PlayerDeck"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Cards" type="GridContainer" parent="DeckService/PlayerDeck/CenterContainer"]
+[node name="Cards" type="GridContainer" parent="MenuService/Game/DeckService/PlayerDeck/CenterContainer"]
 margin_left = 448.0
-margin_top = 64.0
+margin_top = 63.0
 margin_right = 832.0
-margin_bottom = 192.0
+margin_bottom = 191.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 10
 
-[node name="CardView1" parent="DeckService/PlayerDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="CardView1" parent="MenuService/Game/DeckService/PlayerDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -181,7 +575,7 @@ margin_top = 0.0
 margin_right = 128.0
 margin_bottom = 128.0
 
-[node name="CardView2" parent="DeckService/PlayerDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="CardView2" parent="MenuService/Game/DeckService/PlayerDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -191,7 +585,7 @@ margin_top = 0.0
 margin_right = 256.0
 margin_bottom = 128.0
 
-[node name="CardView3" parent="DeckService/PlayerDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="CardView3" parent="MenuService/Game/DeckService/PlayerDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -201,7 +595,7 @@ margin_top = 0.0
 margin_right = 384.0
 margin_bottom = 128.0
 
-[node name="DebugLabel" type="Label" parent="DeckService/PlayerDeck"]
+[node name="DebugLabel" type="Label" parent="MenuService/Game/DeckService/PlayerDeck"]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
@@ -211,7 +605,7 @@ margin_bottom = 64.0
 text = "player - deck"
 autowrap = true
 
-[node name="RequestCard" type="Button" parent="DeckService/PlayerDeck"]
+[node name="RequestCard" type="Button" parent="MenuService/Game/DeckService/PlayerDeck"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 268.0
@@ -220,7 +614,7 @@ margin_bottom = 64.0
 disabled = true
 text = "Request"
 
-[node name="BotDeck" type="Control" parent="DeckService"]
+[node name="BotDeck" type="Control" parent="MenuService/Game/DeckService"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -640.0
@@ -231,17 +625,17 @@ mouse_filter = 2
 script = ExtResource( 4 )
 tThink = 1.0
 
-[node name="CentrePoint" type="Control" parent="DeckService/BotDeck"]
+[node name="CentrePoint" type="Control" parent="MenuService/Game/DeckService/BotDeck"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="CenterContainer" type="CenterContainer" parent="DeckService/BotDeck"]
+[node name="CenterContainer" type="CenterContainer" parent="MenuService/Game/DeckService/BotDeck"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Cards" type="HBoxContainer" parent="DeckService/BotDeck/CenterContainer"]
+[node name="Cards" type="HBoxContainer" parent="MenuService/Game/DeckService/BotDeck/CenterContainer"]
 margin_left = 372.0
 margin_right = 908.0
 margin_bottom = 128.0
@@ -249,7 +643,7 @@ custom_constants/separation = 8
 alignment = 1
 script = ExtResource( 8 )
 
-[node name="Card1" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card1" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -261,13 +655,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card1" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card1" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card1" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card1" index="1"]
 visible = false
 
-[node name="Card2" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card2" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -279,13 +673,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card2" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card2" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card2" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card2" index="1"]
 visible = false
 
-[node name="Card3" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card3" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -297,13 +691,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card3" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card3" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card3" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card3" index="1"]
 visible = false
 
-[node name="Card4" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card4" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -315,13 +709,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card4" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card4" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card4" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card4" index="1"]
 visible = false
 
-[node name="Card5" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card5" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -334,13 +728,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card5" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card5" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card5" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card5" index="1"]
 visible = false
 
-[node name="Card6" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card6" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -353,13 +747,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card6" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card6" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card6" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card6" index="1"]
 visible = false
 
-[node name="Card7" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card7" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -372,13 +766,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card7" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card7" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card7" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card7" index="1"]
 visible = false
 
-[node name="Card8" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card8" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -391,13 +785,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card8" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card8" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card8" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card8" index="1"]
 visible = false
 
-[node name="Card9" parent="DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
+[node name="Card9" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -410,13 +804,13 @@ margin_bottom = 128.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="BG" parent="DeckService/BotDeck/CenterContainer/Cards/Card9" index="0"]
+[node name="BG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card9" index="0"]
 frame = 4
 
-[node name="FG" parent="DeckService/BotDeck/CenterContainer/Cards/Card9" index="1"]
+[node name="FG" parent="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card9" index="1"]
 visible = false
 
-[node name="DebugLabel" type="Label" parent="DeckService/BotDeck"]
+[node name="DebugLabel" type="Label" parent="MenuService/Game/DeckService/BotDeck"]
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
@@ -428,7 +822,7 @@ margin_bottom = 64.0
 text = "bot deck"
 autowrap = true
 
-[node name="CardSendAnimService" type="Control" parent="."]
+[node name="CardSendAnimService" type="Control" parent="MenuService/Game"]
 unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 0.5
@@ -437,9 +831,9 @@ anchor_bottom = 0.5
 script = ExtResource( 10 )
 tTween = 0.3
 
-[node name="Tween" type="Tween" parent="CardSendAnimService"]
+[node name="Tween" type="Tween" parent="MenuService/Game/CardSendAnimService"]
 
-[node name="BackCardView" parent="CardSendAnimService" instance=ExtResource( 11 )]
+[node name="BackCardView" parent="MenuService/Game/CardSendAnimService" instance=ExtResource( 11 )]
 visible = false
 margin_left = -32.0
 margin_top = -32.0
@@ -447,29 +841,36 @@ margin_right = 96.0
 margin_bottom = 96.0
 rect_scale = Vector2( 0.5, 0.5 )
 
-[connection signal="GameStart" from="GameService" to="DeckService" method="_onGameStart"]
-[connection signal="GameStart" from="GameService" to="DeckService/CentreDeck" method="_onGameStart"]
-[connection signal="TurnEnd" from="GameService" to="DeckService/PlayerDeck" method="_on_TurnEnd"]
-[connection signal="TurnEnd" from="GameService" to="DeckService/BotDeck" method="_on_TurnEnd"]
-[connection signal="TurnStart" from="GameService" to="DeckService/PlayerDeck" method="_on_TurnStart"]
-[connection signal="TurnStart" from="GameService" to="DeckService/BotDeck" method="_on_TurnStart"]
-[connection signal="pressed" from="GameService/StartGame" to="GameService" method="_on_StartGame_pressed"]
-[connection signal="PlayerDeckEmpty" from="DeckService/PlayerDeck" to="GameService" method="_on_PlayerDeckEmpty"]
-[connection signal="PlayerTurnEnd" from="DeckService/PlayerDeck" to="GameService" method="_on_PlayerTurnEnd"]
-[connection signal="pressed" from="DeckService/PlayerDeck/RequestCard" to="DeckService/PlayerDeck" method="_on_RequestCard_pressed"]
-[connection signal="PlayerDeckEmpty" from="DeckService/BotDeck" to="GameService" method="_on_PlayerDeckEmpty"]
-[connection signal="PlayerTurnEnd" from="DeckService/BotDeck" to="GameService" method="_on_PlayerTurnEnd"]
-[connection signal="tween_completed" from="CardSendAnimService/Tween" to="CardSendAnimService" method="_onTweenCompleted"]
+[node name="GameOverMenu" type="Control" parent="MenuService"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 13 )
 
-[editable path="DeckService/CentreDeck/DeckCards/DeckCard1"]
-[editable path="DeckService/CentreDeck/DeckCards/DeckCard2"]
-[editable path="DeckService/CentreDeck/DeckCards/DeckCard3"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card1"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card2"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card3"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card4"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card5"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card6"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card7"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card8"]
-[editable path="DeckService/BotDeck/CenterContainer/Cards/Card9"]
+[connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
+[connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService" method="_onGameStart"]
+[connection signal="GameStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/CentreDeck" method="_onGameStart"]
+[connection signal="TurnEnd" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/PlayerDeck" method="_on_TurnEnd"]
+[connection signal="TurnEnd" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/BotDeck" method="_on_TurnEnd"]
+[connection signal="TurnStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/PlayerDeck" method="_on_TurnStart"]
+[connection signal="TurnStart" from="MenuService/Game/GameService" to="MenuService/Game/DeckService/BotDeck" method="_on_TurnStart"]
+[connection signal="PlayerDeckEmpty" from="MenuService/Game/DeckService/PlayerDeck" to="MenuService/Game/GameService" method="_on_PlayerDeckEmpty"]
+[connection signal="PlayerTurnEnd" from="MenuService/Game/DeckService/PlayerDeck" to="MenuService/Game/GameService" method="_on_PlayerTurnEnd"]
+[connection signal="pressed" from="MenuService/Game/DeckService/PlayerDeck/RequestCard" to="MenuService/Game/DeckService/PlayerDeck" method="_on_RequestCard_pressed"]
+[connection signal="PlayerDeckEmpty" from="MenuService/Game/DeckService/BotDeck" to="MenuService/Game/GameService" method="_on_PlayerDeckEmpty"]
+[connection signal="PlayerTurnEnd" from="MenuService/Game/DeckService/BotDeck" to="MenuService/Game/GameService" method="_on_PlayerTurnEnd"]
+[connection signal="tween_completed" from="MenuService/Game/CardSendAnimService/Tween" to="MenuService/Game/CardSendAnimService" method="_onTweenCompleted"]
+
+[editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard1"]
+[editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard2"]
+[editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard3"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card1"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card2"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card3"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card4"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card5"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card6"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card7"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card8"]
+[editable path="MenuService/Game/DeckService/BotDeck/CenterContainer/Cards/Card9"]

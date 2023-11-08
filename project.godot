@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/GameService/GameService.gd"
 }, {
+"base": "Node",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://Scripts/UI/Menu/Menu.gd"
+}, {
 "base": "Deck",
 "class": "PlayableDeck",
 "language": "GDScript",
@@ -39,6 +44,7 @@ _global_script_class_icons={
 "CardView": "",
 "Deck": "",
 "GameService": "",
+"Menu": "",
 "PlayableDeck": ""
 }
 
