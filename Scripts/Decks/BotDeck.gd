@@ -4,6 +4,7 @@ export var tThink : float = 3
 
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
+onready var _think = get_node("ThinkingIcon")
 
 func _ready():
 	for i in range(1, 10):
@@ -65,7 +66,10 @@ func _takeAction():
 
 func _on_TurnStart(i):
 	if i == 1:
+		_think.visible = true
 		yield(get_tree().create_timer(tThink), "timeout")
+		
+		_think.visible = false
 		_takeAction()
 
 func _on_TurnEnd(i):
