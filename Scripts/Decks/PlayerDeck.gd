@@ -1,10 +1,10 @@
 # This class is responsible for the deck of cards in the Player's hand.
 extends PlayableDeck
 
+var CardButton = preload("res://Nodes/Card/CardButton.tscn")
+
 onready var _text = get_node("DebugLabel")
 onready var _cards = get_node("CenterContainer/Cards")
-
-var CardButton = preload("res://Nodes/Card/CardButton.tscn")
 
 func _ready():
 	for cardView in _cards.get_children():

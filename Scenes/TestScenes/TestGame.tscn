@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Decks/CardsDeck.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Decks/CentreDeck.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Nodes/Card/CardView.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Card/CardView.gd" type="Script" id=8]
 [ext_resource path="res://Nodes/UI/TurnArrow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/UI/CardSendAnim/CardSendAnimService.gd" type="Script" id=10]
+[ext_resource path="res://Nodes/Card/BackCardView.tscn" type="PackedScene" id=11]
 
 [node name="TestGame" type="Control"]
 anchor_right = 1.0
@@ -33,7 +35,6 @@ margin_bottom = 35.0
 text = "Start"
 
 [node name="TurnArrow" parent="GameService" instance=ExtResource( 9 )]
-visible = false
 margin_left = 140.0
 margin_top = -124.0
 margin_right = 268.0
@@ -56,7 +57,13 @@ margin_bottom = 100.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="DeckService/CardsDeck"]
+[node name="CentrePoint" type="Control" parent="DeckService/CardsDeck"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="DebugLabel" type="Label" parent="DeckService/CardsDeck"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Deck cards ..."
@@ -72,7 +79,14 @@ margin_bottom = -60.0
 mouse_filter = 2
 script = ExtResource( 2 )
 
+[node name="CentrePoint" type="Control" parent="DeckService/CentreDeck"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
 [node name="DebugLabel" type="Label" parent="DeckService/CentreDeck"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -64.0
@@ -137,6 +151,12 @@ margin_top = -256.0
 margin_right = 640.0
 mouse_filter = 2
 script = ExtResource( 3 )
+
+[node name="CentrePoint" type="Control" parent="DeckService/PlayerDeck"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="CenterContainer" type="CenterContainer" parent="DeckService/PlayerDeck"]
 anchor_right = 1.0
@@ -209,7 +229,13 @@ margin_right = 640.0
 margin_bottom = 144.0
 mouse_filter = 2
 script = ExtResource( 4 )
-tThink = 0.5
+tThink = 1.0
+
+[node name="CentrePoint" type="Control" parent="DeckService/BotDeck"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="CenterContainer" type="CenterContainer" parent="DeckService/BotDeck"]
 anchor_right = 1.0
@@ -391,6 +417,7 @@ frame = 4
 visible = false
 
 [node name="DebugLabel" type="Label" parent="DeckService/BotDeck"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -400,6 +427,25 @@ margin_right = 256.0
 margin_bottom = 64.0
 text = "bot deck"
 autowrap = true
+
+[node name="CardSendAnimService" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 10 )
+tTween = 0.3
+
+[node name="Tween" type="Tween" parent="CardSendAnimService"]
+
+[node name="BackCardView" parent="CardSendAnimService" instance=ExtResource( 11 )]
+visible = false
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 96.0
+margin_bottom = 96.0
+rect_scale = Vector2( 0.5, 0.5 )
 
 [connection signal="GameStart" from="GameService" to="DeckService" method="_onGameStart"]
 [connection signal="GameStart" from="GameService" to="DeckService/CentreDeck" method="_onGameStart"]
@@ -413,6 +459,7 @@ autowrap = true
 [connection signal="pressed" from="DeckService/PlayerDeck/RequestCard" to="DeckService/PlayerDeck" method="_on_RequestCard_pressed"]
 [connection signal="PlayerDeckEmpty" from="DeckService/BotDeck" to="GameService" method="_on_PlayerDeckEmpty"]
 [connection signal="PlayerTurnEnd" from="DeckService/BotDeck" to="GameService" method="_on_PlayerTurnEnd"]
+[connection signal="tween_completed" from="CardSendAnimService/Tween" to="CardSendAnimService" method="_onTweenCompleted"]
 
 [editable path="DeckService/CentreDeck/DeckCards/DeckCard1"]
 [editable path="DeckService/CentreDeck/DeckCards/DeckCard2"]

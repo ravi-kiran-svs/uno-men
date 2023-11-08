@@ -4,6 +4,7 @@ extends Deck
 onready var _text = get_node("DebugLabel")
 onready var _topCard = get_node("TopCard")
 onready var _deckCards = get_node("DeckCards")
+onready var centrePoint = get_node("CentrePoint")
 
 func _ready():
 	DeckService = get_node("%DeckService")

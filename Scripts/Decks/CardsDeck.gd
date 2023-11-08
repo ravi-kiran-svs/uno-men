@@ -2,7 +2,8 @@
 # from which the player and the bot draw the cards from.
 extends Deck
 
-onready var _text = get_node("Label")
+onready var _text = get_node("DebugLabel")
+onready var centrePoint = get_node("CentrePoint")
 
 func _ready():
 	DeckService = get_node("%DeckService")
@@ -35,9 +36,9 @@ func removeCard(card : Card):
 		updateView()
 
 func updateView():
-	_updateText()
+	_updateDebugText()
 	
-func _updateText():
+func _updateDebugText():
 	var text_string = ""
 	
 	for i in _cards_list.size():

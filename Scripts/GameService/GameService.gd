@@ -12,6 +12,9 @@ onready var arrow = get_node("TurnArrow")
 
 var _currentTurn = 0
 
+func _ready():
+	arrow.visible = false
+
 func _startTurn(i):
 	arrow.turn(_currentTurn, i)
 	
@@ -20,7 +23,7 @@ func _startTurn(i):
 
 func _on_StartGame_pressed():
 	$StartGame.disabled = true
-	$TurnArrow.visible = true
+	arrow.visible = true
 	
 	emit_signal("GameStart")
 	_startTurn(0)
