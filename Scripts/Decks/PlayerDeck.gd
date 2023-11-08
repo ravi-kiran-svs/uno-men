@@ -32,8 +32,22 @@ func addCard(card : Card):
 	var cardButton = CardButton.instance()
 	cardButton.setCard(card)
 	cardButton.connect("ButtonPressed", self, "_onCardButtonPressed")
+	
+	var posToAdd = _cards.get_child_count()
+	for	i in _cards.get_child_count():
+		var cardI = _cards.get_child(i)._card
+		
+		if	cardButton._card.colour < cardI.colour:
+			posToAdd = i
+			break
+		
+		elif	cardButton._card.colour == cardI.colour:
+			if	cardButton._card.num < cardI.num:
+				posToAdd = i
+				break
+	
 	_cards.add_child(cardButton)
-	#move child etc - to rearrange
+	_cards.move_child(cardButton, posToAdd)
 
 func emptyDeck():
 	.emptyDeck()
