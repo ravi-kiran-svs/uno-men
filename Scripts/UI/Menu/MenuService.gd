@@ -1,4 +1,5 @@
 extends Control
+class_name MenuService
 
 enum Menus {MAIN_MENU = 0, GAME = 1, GAME_OVER_MENU = 2}
 

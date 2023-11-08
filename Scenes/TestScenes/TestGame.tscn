@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/Decks/CardsDeck.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Decks/CentreDeck.gd" type="Script" id=2]
@@ -360,6 +360,125 @@ tracks/5/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 509, 184 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ReplayButton:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 504, 392 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 509, -236 ), Vector2( 509, 184 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ReplayButton:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 504, 766 ), Vector2( 504, 392 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "exit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 509, 184 ), Vector2( 509, -236 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ReplayButton:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 504, 392 ), Vector2( 504, 766 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="UNOLITE" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -406,7 +525,7 @@ margin_left = -64.0
 margin_top = 4.0
 margin_right = 64.0
 margin_bottom = 68.0001
-text = "Play"
+text = "PLAY"
 
 [node name="Game" type="Control" parent="MenuService"]
 visible = false
@@ -842,10 +961,41 @@ margin_bottom = 96.0
 rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="GameOverMenu" type="Control" parent="MenuService"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 13 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuService/GameOverMenu"]
+anims/RESET = SubResource( 7 )
+anims/enter = SubResource( 9 )
+anims/exit = SubResource( 8 )
+
+[node name="Label" type="Label" parent="MenuService/GameOverMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -131.0
+margin_top = -176.0
+margin_right = 131.0
+margin_bottom = 32.0002
+text = "CONGRATS / YOU LOSE
+YOU WIN / GAME OVER"
+align = 1
+valign = 1
+
+[node name="ReplayButton" type="Button" parent="MenuService/GameOverMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.0
+margin_top = 32.0
+margin_right = 136.0
+margin_bottom = 176.0
+text = "REPLAY"
 
 [connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService/Game/GameService" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MenuService/MainMenu/PlayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
@@ -861,6 +1011,7 @@ script = ExtResource( 13 )
 [connection signal="PlayerDeckEmpty" from="MenuService/Game/DeckService/BotDeck" to="MenuService/Game/GameService" method="_on_PlayerDeckEmpty"]
 [connection signal="PlayerTurnEnd" from="MenuService/Game/DeckService/BotDeck" to="MenuService/Game/GameService" method="_on_PlayerTurnEnd"]
 [connection signal="tween_completed" from="MenuService/Game/CardSendAnimService/Tween" to="MenuService/Game/CardSendAnimService" method="_onTweenCompleted"]
+[connection signal="pressed" from="MenuService/GameOverMenu/ReplayButton" to="MenuService" method="changeMenuTo" binds= [ 1 ]]
 
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard1"]
 [editable path="MenuService/Game/DeckService/CentreDeck/DeckCards/DeckCard2"]

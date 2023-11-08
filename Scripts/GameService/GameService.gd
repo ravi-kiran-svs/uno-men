@@ -41,3 +41,5 @@ func _on_PlayerDeckEmpty(i : int):
 	
 	else:
 		print("YOU LOSE")
+	
+	get_node("%MenuService").changeMenuTo(MenuService.Menus.GAME_OVER_MENU)
